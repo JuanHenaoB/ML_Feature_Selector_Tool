@@ -58,7 +58,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import MinMaxScaler
 
 def embedded_log_reg_selector(X, y, num_feats):
-    #I'm using l2 penalty because skleark prompts l1 penalty was deprecated
+    #I'm using l2 penalty because sklearn prompts l1 penalty was deprecated
     embeded_lr_selector = SelectFromModel(estimator=LogisticRegression(penalty="l2"), max_features=num_feats)
     X_norm = MinMaxScaler().fit_transform(X)
     embeded_lr_selector.fit(X_norm, y)
@@ -98,14 +98,12 @@ def embedded_lgbm_selector(X, y, num_feats):
 ############################################################
 #Data pre-processing for Script
 def preprocess_dataset(dataset_path):
-    # Your code starts here (Multiple lines)
     # Since generalizing a Data pre processing for any dataset is unpractical the script will expect a pre processed dataset
     #And this step will consist only on separating X and y values
     df = pd.read_csv(dataset_path)
     X = df.iloc[:,0:-1]
     feature_name = X.columns.tolist()
     y = df.iloc[:,-1]
-    # Your code ends here
     return X, y, feature_name
 
 ##########################################################
